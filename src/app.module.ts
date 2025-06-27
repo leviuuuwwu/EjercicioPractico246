@@ -2,6 +2,9 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
 import { User } from './users/user.entity';
+import { AuthModule } from './auth/auth.module';
+import { CoursesModule } from './courses/courses.module'; // <- ESTA ES LA QUE FALTA
+import { Course } from './courses/course.entity';
 
 @Module({
   imports: [
@@ -12,10 +15,12 @@ import { User } from './users/user.entity';
       username: 'postgres',
       password: 'sexo',
       database: 'practica614',
-      entities: [User],
-      synchronize: true, 
+      entities: [User, Course],
+      synchronize: true,
     }),
     UsersModule,
+    AuthModule,
+    CoursesModule,
   ],
 })
 export class AppModule {}
